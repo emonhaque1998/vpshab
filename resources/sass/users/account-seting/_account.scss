@@ -1,0 +1,38 @@
+.for_modifyed{
+    #accountAccording{
+        --bs-accordion-body-padding-x: 0rem;
+        --bs-accordion-body-padding-y: 0rem;
+    }
+    ul{
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+        li{
+            display: block;
+            background-color: rgba(6, 10, 14, 0.5);
+            padding: 10px 20px;
+            border-bottom: 1px solid gray;
+            cursor: pointer;
+            &:hover{
+                background-color: rgba(236, 240, 241, 0.2);
+            }
+            a{
+                color: white;
+                font-size: 14px;
+            }            
+        }
+        .active_user{
+            background-color: rgba(255, 255, 255, 0.1);
+            a{
+                color: white;
+            }
+        }
+    }
+   
+}
+
+.background_right{
+    background-color:  rgba(6, 10, 14, 0.8);
+    padding: 20px 20px;
+    border-radius: 10px;
+}

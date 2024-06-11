@@ -1,0 +1,50 @@
+@import "./../../responsive/media";
+
+.main_dashboard {
+    background-color: #15212a !important;
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        @include respond-to(small){
+            flex-direction: column;
+        }
+        .left_side {
+            width: 23%;
+            @include respond-to(small){
+                width: 100%;
+            }
+            .accordion {
+                .accordion-item {
+                    background-color: rgba(6, 10, 14, 0.5);
+                    border-color: rgba(6, 10, 14, 0.5);
+                    .accordion-header {
+                        button {
+                            color: white;
+                            background-color: rgba(6, 10, 14, 0.5);
+                            box-shadow: none;
+                        }
+                    }
+                    div {
+                        div {
+                            strong {
+                                color: white;
+                            }
+                            button {
+                                margin-top: 20px;
+                                background-color: rgba(6, 10, 14, 0.5);
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .right_side {
+            width: 73%;
+            @include respond-to(small){
+                width: 100%;
+            }
+        }
+    }
+}

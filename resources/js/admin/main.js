@@ -1,0 +1,17 @@
+import "./header";
+import "./basicinfo";
+import "./add-product";
+import "./category";
+import "./country";
+import "./map";
+import "./page";
+import "./profile";
+import "./specifications";
+import "./all-product";
+import "./terms";
+import "./support";
+import "./isp";
+import "./order";
+import "./cuppon";
+import "./know&faq";
+import "./users";

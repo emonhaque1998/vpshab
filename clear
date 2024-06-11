@@ -1,0 +1,27 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#6122
+    [34mall[39m: [
+      [34;4mApp\Models\User[39;24m {#6124
+        [34mid[39m: [35m1[39m,
+        [34mname[39m: "[32mEman Haque[39m",
+        [34memail[39m: "[32memonhaque.net@gmail.com[39m",
+        [34mrole[39m: "[32muser[39m",
+        [34memail_verified_at[39m: [36mnull[39m,
+        #[33mpassword[39m: "[32m$2y$12$tXOFqKC1Y22ZxVBt0HBRVuV6Jy8V/Ik8vTpLCj9oWU0qqb36GrmUy[39m",
+        #[33mremember_token[39m: [36mnull[39m,
+        [34mcreated_at[39m: "[32m2024-01-23 19:48:15[39m",
+        [34mupdated_at[39m: "[32m2024-01-23 19:48:15[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#6125
+        [34mid[39m: [35m2[39m,
+        [34mname[39m: "[32mMonir H[39m",
+        [34memail[39m: "[32mmonirhaque@gmail.com[39m",
+        [34mrole[39m: "[32muser[39m",
+        [34memail_verified_at[39m: [36mnull[39m,
+        #[33mpassword[39m: "[32m$2y$12$s192JQEXjGgnSUSAZyNn9O/GIJP6FBpTYDPYUUiOHukaIol6Oc2Hi[39m",
+        #[33mremember_token[39m: [36mnull[39m,
+        [34mcreated_at[39m: "[32m2024-01-24 08:28:55[39m",
+        [34mupdated_at[39m: "[32m2024-01-24 08:28:55[39m",
+      },
+    ],
+  }
+
