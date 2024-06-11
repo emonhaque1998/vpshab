@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendContactFromAdmin;
 use App\Models\Contact;
 use App\Models\Conversation;
 use GuzzleHttp\Psr7\Response;
@@ -45,6 +46,7 @@ class SingleMessagesController extends Controller
         ]);
 
         if($message){
+            SendContactFromAdmin::dispatch($request->email, $message);
             return response()->json([
                 "message" => "Your replay is successfully send",
                 "result" => $message

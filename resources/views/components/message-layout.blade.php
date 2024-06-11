@@ -3,7 +3,7 @@
     <!--start email wrapper-->
     <div class="email-wrapper">
      <div class="email-sidebar">
-         <div class="email-sidebar-header d-grid"> <a href="javascript:;" class="btn btn-primary compose-mail-btn"><i class="bi bi-plus-lg me-2"></i>Compose</a>
+         <div class="email-sidebar-header d-grid"> <a href="javascript:;" class="btn btn-primary"><i class="bi bi-plus-lg me-2"></i>Add Support</a>
          </div>
          <div class="email-sidebar-content">
              <div class="email-navigation">
