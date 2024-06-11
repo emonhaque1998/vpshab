@@ -1202,6 +1202,19 @@
                                                                                                                                         </td>
                                                                                                                                     </tr>
                                                                                                                                     <tr data-element="Colibri-content-titles"
+                                                                                                                                        data-label="Shipping">
+                                                                                                                                        <td data-text-style="Calculation"
+                                                                                                                                            align="right"
+                                                                                                                                            style="font-family:'Poppins',Arial,Helvetica,sans-serif;font-size:18px;line-height:30px;font-weight:700;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
+                                                                                                                                            <singleline>
+                                                                                                                                                <div mc:edit
+                                                                                                                                                    data-text-edit>
+                                                                                                                                                    Discount:
+                                                                                                                                                </div>
+                                                                                                                                            </singleline>
+                                                                                                                                        </td>
+                                                                                                                                    </tr>
+                                                                                                                                    <tr data-element="Colibri-content-titles"
                                                                                                                                         data-label="Tax">
                                                                                                                                         <td data-text-style="Calculation"
                                                                                                                                             align="right"
@@ -1252,7 +1265,7 @@
                                                                                                                                             <singleline>
                                                                                                                                                 <div mc:edit
                                                                                                                                                     data-text-edit>
-                                                                                                                                                    ${{ $invoice->product->monthly_price * $invoice->quantity }}
+                                                                                                                                                    ${{ $invoice->product->monthly_price * $invoice->quantity }}.00
                                                                                                                                                 </div>
                                                                                                                                             </singleline>
                                                                                                                                         </td>
@@ -1265,7 +1278,25 @@
                                                                                                                                             <singleline>
                                                                                                                                                 <div mc:edit
                                                                                                                                                     data-text-edit>
-                                                                                                                                                    ${{ $invoice->freshIp ? $invoice->product->freshIP_amount * $invoice->quantity : 0 }}
+                                                                                                                                                    ${{ $invoice->freshIp ? $invoice->product->freshIP_amount * $invoice->quantity : 0 }}.00
+                                                                                                                                                </div>
+                                                                                                                                            </singleline>
+                                                                                                                                        </td>
+                                                                                                                                    </tr>
+                                                                                                                                    <tr data-element="Colibri-content-titles"
+                                                                                                                                        data-label="Tax number">
+                                                                                                                                        <td data-text-style="Calculation"
+                                                                                                                                            align="left"
+                                                                                                                                            style="font-family:'Poppins',Arial,Helvetica,sans-serif;font-size:18px;line-height:30px;font-weight:400;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;">
+                                                                                                                                            <singleline>
+                                                                                                                                                <div mc:edit
+                                                                                                                                                    data-text-edit>
+                                                                                                                                                    @if($invoice->createInvoiceReniew)
+                                                                                                                                                        ${{ $invoice->order[0]->discount_amount ?? 0 }}.00    
+                                                                                                                                                    @else
+                                                                                                                                                        $0.00
+                                                                                                                                                    @endif
+                                                                                                                                                    
                                                                                                                                                 </div>
                                                                                                                                             </singleline>
                                                                                                                                         </td>
@@ -1342,12 +1373,22 @@
                                                                                                                         <div mc:edit
                                                                                                                             data-text-edit>
                                                                                                                             TOTAL:
-                                                                                                                            $@php
-                                                                                                                                $totalFreshPrice = $invoice->freshIp ? $invoice->product->freshIP_amount * $invoice->quantity : 0;
-                                                                                                                                $totalAmount = $invoice->product->monthly_price * $invoice->quantity;
-                                                                                                                                $netPrice = $totalFreshPrice + $totalAmount;
-                                                                                                                                echo $netPrice;
-                                                                                                                            @endphp
+                                                                                                                            $
+                                                                                                                            @if ($invoice->createInvoiceReniew)
+                                                                                                                                @php
+                                                                                                                                    $totalPrice = $invoice->product->monthly_price - $invoice->order[0]->discount_amount;
+                                                                                                                                    
+                                                                                                                                    echo $totalPrice . ".00";
+                                                                                                                                @endphp
+                                                                                                                            @else
+                                                                                                                                @php
+                                                                                                                                    $totalFreshPrice = $invoice->freshIp ? $invoice->product->freshIP_amount * $invoice->quantity : 0;
+                                                                                                                                    $totalAmount = $invoice->product->monthly_price * $invoice->quantity;
+                                                                                                                                    $netPrice = $totalFreshPrice + $totalAmount;
+                                                                                                                                    echo $netPrice;
+                                                                                                                                @endphp
+                                                                                                                            @endif
+                                                                                                                            
                                                                                                                         </div>
                                                                                                                     </singleline>
                                                                                                                 </td>

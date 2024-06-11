@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 <x-app-layout>
     <div id="cover-spin"></div>
     <!--breadcrumb-->
@@ -67,4 +70,39 @@
             </div>
         </div>
     </div><!--end row-->
+    <div class="col-12 col-lg-12 d-flex">
+        <div class="card w-100">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Ip</th>
+                                <th>Customer name</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Due Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           @isset($orders)
+                            @foreach ($orders as $key => $order)
+                                <tr>
+                                    <td>{{ $order->ipAddress ? $order->ipAddress : 'Not Given' }}</td>
+                                    <td>{{ $order->name ?? '' }}</td>
+                                    <td>{{ $order->product->currency ??  "" }} {{ $order->product->monthly_price ?? "Not Found" }}</td>
+                                    <td><span class="badge rounded-pill bg-danger">{{ $order->status }}</span></td>
+                                    <td>{{ $order->created_at->format('d-m-Y') }}</td>
+                                    <td>{{ Carbon::parse($order->dueDate)->format('d-m-Y') }}</td>
+                                </tr>
+                            @endforeach
+                           @endisset
+                        </tbody>
+                    </table>
+                </div>
+                {{-- {{ $orders->links('vendor.pagination.default') }} --}}
+            </div>
+        </div>
+    </div>
 </x-app-layout>

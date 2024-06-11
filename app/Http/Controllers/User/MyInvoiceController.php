@@ -43,6 +43,7 @@ class MyInvoiceController extends Controller
     public function show(string $id)
     {
         $invoics = Invoice::find($id);
+
         return view("users.user-invoice", ["invoice" => $invoics]);
     }
 

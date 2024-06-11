@@ -21,26 +21,44 @@ class BeforeFiveDaysCreateInvoice extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Order Auto Genarete Invoice';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $orders = Order::where('dueDate', '<', Carbon::now()->subDays(5))
+        $orders = Order::where('dueDate', '<=', Carbon::now()->addDays(5))
                        ->get();
 
         foreach ($orders as $order) {
-            Invoice::create([
-                "orderId" => uniqid(),
-                "user_id" => $order->user->id,
-                "quantity" => 1,
-                "product_id" => $order->product->id,
-                "totalAmount" => $order->product->monthly_price,
-                "note" => $order->invoice->note,
-                "createInvoiceReniew" => true
-            ]);
+            if($order->renew){
+                if($order->next_discount){
+                    $invoice = Invoice::create([
+                        "orderId" => uniqid(),
+                        "user_id" => $order->user->id,
+                        "quantity" => 1,
+                        "product_id" => $order->product->id,
+                        "totalAmount" => $order->product->monthly_price - $order->discount_amount,
+                        "note" => $order->invoice->note,
+                        "createInvoiceReniew" => true
+                    ]);
+                    $order->invoice_id = $invoice->id;
+                    $order->save();
+                }else{
+                    $invoice = Invoice::create([
+                        "orderId" => uniqid(),
+                        "user_id" => $order->user->id,
+                        "quantity" => 1,
+                        "product_id" => $order->product->id,
+                        "totalAmount" => $order->product->monthly_price,
+                        "note" => $order->invoice->note,
+                        "createInvoiceReniew" => true
+                    ]);
+                    $order->invoice_id = $invoice->id;
+                    $order->save();
+                }
+            }
         }
 
         $this->info('Order statuses updated successfully.');

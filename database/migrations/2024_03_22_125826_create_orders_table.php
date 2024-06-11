@@ -27,7 +27,8 @@ return new class extends Migration
             $table->string("api_key")->nullable();
             $table->string("api_hash")->nullable();
             $table->boolean("next_discount")->default(false);
-            $table->float("discount_amount")->nullable();
+            $table->integer("discount_amount")->nullable();
+            $table->boolean("renew")->default(false);
             $table->dateTime('expiration_date')->default(now()->addDays(32));
             $table->dateTime('dueDate')->default(now()->addDays(30));
             $table->unsignedBigInteger("product_id")->index();

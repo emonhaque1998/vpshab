@@ -38,7 +38,8 @@ class SingleUserProfile extends Controller
     public function show(string $id)
     {
         $user = User::where("email", $id)->first();
-        return view("admin.users.user-information", ["order" => $user->order, "user" => $user]);
+        $orders = $user->order;
+        return view("admin.users.user-information", ["order" => $user->order, "user" => $user, "orders" => $orders]);
     }
 
     /**
