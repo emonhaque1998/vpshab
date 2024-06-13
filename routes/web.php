@@ -147,7 +147,7 @@ Route::middleware(["auth:admin"])->prefix("admin/products/")->group(function () 
     Route::resource("/edit/single-product", SingleProductController::class)->only(["show", "update"]);
     Route::resource("/add-product", AddProductController::class)->only(["index", "store"]);
     Route::resource("/category", ProductCategoryController::class)->only(["index", "store", "show", "update", "edit", "destroy"]);
-    Route::resource("/country", CountryController::class)->only(["index", "store", "destroy"]);
+    Route::resource("/country", CountryController::class)->only(["index", "store", "destroy", "show"]);
     Route::resource("/isp", ISPController::class)->only(["index", "destroy", "store"]);
     Route::resource("/cuppon", CupponGenaratorController::class)->only(["index", "store"]);
     Route::resource("/give-ip", GivenIPAdressController::class)->only(["update"]);

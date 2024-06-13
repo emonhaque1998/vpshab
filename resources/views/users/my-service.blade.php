@@ -51,7 +51,7 @@
                                     <td>{{ $order->status }}</td>
                                     <td>
                                         @isset($order->api_status)
-                                            @if($order->api_status != "error" &&  $order->status != "Expire" && $order->invoice->status === "Paid")
+                                            @if($order->api_status != "error" &&  $order->status != "Expire")
                                                 @if ($order->api_status === "offline")
                                                     <a class="btn btn-success py-0 px-2" href="{{ url("service-boot/$order->id") }}">Boot</a> | <a class="btn btn-success py-0 px-2" href="">Restart</a></td>
                                                 @else

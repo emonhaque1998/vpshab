@@ -33,12 +33,18 @@ class CountryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "name" => "required|unique:countries,name",
+            "name" => "required",
             "horizontal" => "required",
             "vertical" => "required"
         ]);
 
-        $data = Country::create($request->all());
+        $data = Country::updateOrCreate([
+            "id" => $request->countryId
+        ] ,[
+            "name" => $request->name,
+            "vertical" => $request->vertical,
+            "horizontal" => $request->horizontal
+        ]);
         Cache::forget('wp_country');
 
         return response()->json([
@@ -52,7 +58,18 @@ class CountryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = Country::find($id);
+        
+        if($data){
+            return response()->json([
+                "returnData" => $data
+            ], 200);
+        }
+
+        return response()->json([
+            "message" => "Data Not Found"
+        ], 200);
+        
     }
 
     /**

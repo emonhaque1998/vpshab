@@ -173,6 +173,7 @@
                                                 <td>
                                                     <div class="title-table">Subtotal</div>
                                                 </td>
+                                                <input type="hidden" id="productStock" value="{{ $product->stock ?? "0" }}">
                                                 <input id="productSlug" type="hidden" value="{{ $product->slug }}">
                                                 <td>{{ $product->currency }} <span
                                                         id="priceAmount">{{ $product->monthly_price }}</span></td>

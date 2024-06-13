@@ -56,6 +56,7 @@ class BeforeFiveDaysCreateInvoice extends Command
                         "createInvoiceReniew" => true
                     ]);
                     $order->invoice_id = $invoice->id;
+                    $order->renew = false;
                     $order->save();
                 }
             }

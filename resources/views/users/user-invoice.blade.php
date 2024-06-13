@@ -1499,6 +1499,7 @@
                                                                                                                 <form action="{{ url("/sassion") }}" method="POST">
                                                                                                                     @csrf
                                                                                                                     <input type="hidden" value="1" name="otherSide">
+                                                                                                                    <input type="hidden" value="{{ $invoice->order[0]->id }}" name="orderId">
                                                                                                                     <input type="hidden" value="{{ $invoice->product->title }}" name="productName">
                                                                                                                     <input type="hidden" value="{{ $invoice->product->freshIP_amount }}" name="freshIp">
                                                                                                                     <input type="hidden" value="{{ $invoice->product->id }}" name="productId">

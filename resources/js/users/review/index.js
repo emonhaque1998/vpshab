@@ -5,6 +5,7 @@ const review = new ReviewClasses();
 if (review.quantityNumber) {
     review.quantityNumber.addEventListener("change", (e) => {
         review.amountCalculation();
+        review.checkStock();
     });
 }
 
@@ -12,6 +13,7 @@ if (review.quantityNumber) {
 if (review.quantityNumber) {
     window.addEventListener("load", (e) => {
         review.amountCalculation();
+        review.checkStock();
     });
 }
 

@@ -15,10 +15,11 @@
                             <form class="row g-3" action="{{ route('category.index') }}" method="POST"
                                 id="countrySubmitForm">
                                 @csrf
+                                <input type="hidden" value="" id="countryFormId" name="countryId">
                                 <div class="col-12">
                                     <label for="countryName" class="form-label">Country Name</label>
                                     <input type="text" id="countryName" class="form-control"
-                                        placeholder="Country Name" name="name">
+                                        placeholder="Country Name" name="name" id="countryName">
                                 </div>
                                 <div class="col-12">
                                     <label for="verticalAlign" class="form-label">Vertical Align</label>
@@ -54,8 +55,9 @@
                                         @isset($countris)
                                             @foreach ($countris as $key => $country)
                                                 <tr>
+                                                    <input type="hidden" value="{{ $country->id }}" id="countryId">
                                                     <td>#{{ ++$key }}</td>
-                                                    <td>{{ $country->name }}</td>
+                                                    <td><a href="#" id="countryEditBtn">{{ $country->name }}</a></td>
                                                     <td>54</td>
                                                     <td>
                                                         <div class="d-flex align-items-center gap-3 fs-6">

@@ -21,7 +21,19 @@ class StripeController extends Controller
 
         $information = array();
         $information['productName'] = $request->get("productName");
-        $information['totalPrice'] = $request->get("freshIp") ? intval(Product::find($request->productId)->monthly_price) + intval($request->get("freshIp")) : intval(Product::find($request->productId)->monthly_price);
+        $information["orderId"] = $request->get("orderId");
+        $oderInformation = Order::find($request->get("orderId"));
+        if($oderInformation){
+            if($oderInformation->renew){
+                if($oderInformation->next_discount){
+                    $information['totalPrice'] = intval(Product::find($request->productId)->monthly_price) - intval($oderInformation->discount_amount);
+                }else{
+                    $information['totalPrice'] = intval(Product::find($request->productId)->monthly_price);    
+                }
+            }
+        }else{
+            $information['totalPrice'] = $request->get("freshIp") ? intval(Product::find($request->productId)->monthly_price) + intval($request->get("freshIp")) : intval(Product::find($request->productId)->monthly_price);
+        }
         $information['customer_name'] = Auth::user()->name;
         $information['companyName'] = Auth::user()->companyName;
         $information['invoice'] = "IN-" . uniqid();
@@ -89,7 +101,14 @@ class StripeController extends Controller
             if($order->status === "Pending"){
                 Order::find($orderId->id)->update([
                     "status" => "Processing",
+                    "transaction_id" => $data['transaction_id'],    
+                ]);
+            }else if($order->status === "Successfull"){
+                Order::find($orderId->id)->update([
+                    "status" => "Processing",
                     "transaction_id" => $data['transaction_id'],
+                    "dueDate" => now()->addDays(30),
+                    "created_at" => now()
                 ]);
             }
         }

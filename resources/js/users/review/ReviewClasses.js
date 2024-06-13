@@ -18,6 +18,7 @@ export default class ReviewClasses {
             "primaryInputFreshIP_amount"
         );
         this.freshIpAmountDiv = document.getElementById("freshIpAmountDiv");
+        this.productStock = document.getElementById("productStock");
     }
 
     beforSubmitChackout() {
@@ -28,6 +29,14 @@ export default class ReviewClasses {
             this.inputFreshIP_amount.value =
                 this.primaryInputFreshIP_amount.value;
             this.reviewSubmit.submit();
+        }
+    }
+
+    checkStock(){
+        if(this.quantityNumber.value > this.productStock.value){
+            this.checkoutRequest.setAttribute("disabled", "");
+        }else{
+            this.checkoutRequest.removeAttribute("disabled");
         }
     }
 
