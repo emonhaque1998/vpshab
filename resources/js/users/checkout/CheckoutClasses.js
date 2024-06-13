@@ -9,13 +9,15 @@ export default class CheckoutClasses {
         this.termsCondition = document.getElementById("termsCondition");
         this.quantityNumber = document.getElementById("quantityNumber");
         this.ispSelection = document.getElementById("ispSelection");
+        this.productStock = document.getElementById("productStock");
     }
 
     termsConditionChangeHandler() {
         if (
             !this.termsCondition.checked ||
             Number(this.quantityNumber.value) <= 0 ||
-            this.ispSelection.value === "0"
+            this.ispSelection.value === "0" ||
+            this.quantityNumber.value > this.productStock.value
         ) {
             this.checkoutRequest.setAttribute("disabled", "");
         } else {

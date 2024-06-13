@@ -30,6 +30,8 @@ class StripeController extends Controller
                 }else{
                     $information['totalPrice'] = intval(Product::find($request->productId)->monthly_price);    
                 }
+            }else{
+                $information['totalPrice'] = $request->get("freshIp") ? intval(Product::find($request->productId)->monthly_price) + intval($request->get("freshIp")) : intval(Product::find($request->productId)->monthly_price);
             }
         }else{
             $information['totalPrice'] = $request->get("freshIp") ? intval(Product::find($request->productId)->monthly_price) + intval($request->get("freshIp")) : intval(Product::find($request->productId)->monthly_price);

@@ -35,8 +35,6 @@ export default class ReviewClasses {
     checkStock(){
         if(this.quantityNumber.value > this.productStock.value){
             this.checkoutRequest.setAttribute("disabled", "");
-        }else{
-            this.checkoutRequest.removeAttribute("disabled");
         }
     }
 
