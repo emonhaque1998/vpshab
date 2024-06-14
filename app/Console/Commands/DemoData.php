@@ -7,7 +7,9 @@ use App\Models\Admin;
 use App\Models\Announcement;
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\Invoice;
 use App\Models\IspLocation;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Support;
 use Illuminate\Console\Command;
@@ -44,6 +46,8 @@ class DemoData extends Command
 
         Category::factory()->create();
         Product::factory()->create();
+        Order::factory()->create();
+        Invoice::factory()->create();
 
         $this->info('Demo created successfully!');
     }

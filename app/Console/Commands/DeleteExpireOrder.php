@@ -27,7 +27,7 @@ class DeleteExpireOrder extends Command
      */
     public function handle()
     {
-        $orders = Order::where('dueDate', '<', Carbon::now()->addDays(7))
+        $orders = Order::where('dueDate', '<', Carbon::now()->subDays(7))
                        ->get();
 
         foreach ($orders as $order) {

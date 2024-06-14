@@ -19,11 +19,13 @@ class Kernel extends ConsoleKernel
 
         $schedule->command("app:chack-unpaid-send-email")->daily()->withoutOverlapping();
 
-        $schedule->command('expire:records')->daily();
-
         $schedule->command("app:before-seven-days-order-change")->everyMinute();
 
         $schedule->command("app:before-five-days-create-invoice")->everyMinute();
+
+        $schedule->command('expire:records')->everyMinute();
+        
+        $schedule->command("app:delete-expire-order")->everyMinute();
     }
 
     /**

@@ -29,10 +29,11 @@ class BeforeFiveDaysCreateInvoice extends Command
     public function handle()
     {
         $orders = Order::where('dueDate', '<=', Carbon::now()->addDays(5))
+                        ->where("status", "Successfull")
                        ->get();
 
         foreach ($orders as $order) {
-            if($order->renew){
+            if($order->renew && !$order->invoice->createInvoiceReniew){
                 if($order->next_discount){
                     $invoice = Invoice::create([
                         "orderId" => uniqid(),
@@ -56,7 +57,6 @@ class BeforeFiveDaysCreateInvoice extends Command
                         "createInvoiceReniew" => true
                     ]);
                     $order->invoice_id = $invoice->id;
-                    $order->renew = false;
                     $order->save();
                 }
             }

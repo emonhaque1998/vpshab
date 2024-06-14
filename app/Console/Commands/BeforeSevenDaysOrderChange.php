@@ -27,11 +27,12 @@ class BeforeSevenDaysOrderChange extends Command
      */
     public function handle()
     {
-        $orders = Order::where('dueDate', '<=', Carbon::now()->addDays(7))
+        $orders = Order::where('dueDate', '<', Carbon::now()->addDays(7))
+                        ->where("status", "Successfull")
                        ->get();
 
         foreach ($orders as $order) {
-            if(!$order->renew){
+            if(!$order->renew && !$order->invoice->createInvoiceReniew){
                 $order->renew = true;
                 $order->save();
             }

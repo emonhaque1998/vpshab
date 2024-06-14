@@ -27,11 +27,13 @@ class ExpireRecordsCommand extends Command
      */
     public function handle()
     {
-        $orders = Order::where('dueDate', '<', Carbon::now()->subDays(1))
+        $orders = Order::where('dueDate', '<', Carbon::now()->addDays(1))
+                        ->where("status", "Successfull")
                        ->get();
 
         foreach ($orders as $order) {
             // Update the status column as per your requirement
+            $order->invoice->delete();
             $order->status = 'Expire';
             $order->save();
         }

@@ -109,6 +109,7 @@ class StripeController extends Controller
                 Order::find($orderId->id)->update([
                     "status" => "Processing",
                     "transaction_id" => $data['transaction_id'],
+                    "renew" => false,
                     "dueDate" => now()->addDays(30),
                     "created_at" => now()
                 ]);
